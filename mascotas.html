@@ -1,31 +1,154 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <title> Tienda de Mascotas</title>
-        <link rel="stylesheet" href="masc.css"type="text/css">
-    </head>
-    <body>
-        <table>
-            <thead>
-              <tr>
-                <th>ID</th>
-                <th>Nombre</th>
-                <th>Correo</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>1</td>
-                <td>John Doe</td>
-                <td>john.doe@example.com</td>
-              </tr>
-              <tr>
-                <td>2</td>
-                <td>Jane Smith</td>
-                <td>jane.smith@example.com</td>
-              </tr>
-            </tbody>
-          </table>
-          
-    </body>
+  <head>
+    <meta charset="UTF-8">
+    <title>Veterinaria</title>
+    <style>
+      table {
+        border-collapse: collapse;
+      }
+
+      th, td {
+        border: 1px solid black;
+        padding: 8px;
+      }
+
+      th {
+        background-color: lightblue;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Veterinaria</h1>
+
+    <h2>Dueños de mascotas</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Nombre</th>
+          <th>Correo</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>1</td>
+          <td>Juan</td>
+          <td>juan@gmail.com</td>
+        </tr>
+        <tr>
+          <td>2</td>
+          <td>Maria</td>
+          <td>maria@gmail.com</td>
+        </tr>
+        <tr>
+          <td>3</td>
+          <td>Pedro</td>
+          <td>pedro@gmail.com</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h2>Mascotas</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Nombre</th>
+          <th>Peso</th>
+          <th>Edad</th>
+          <th>Dueño</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>1</td>
+          <td>Firulais</td>
+          <td>10</td>
+          <td>3</td>
+          <td>Juan</td>
+        </tr>
+        <tr>
+          <td>2</td>
+          <td>Pelusa</td>
+          <td>5</td>
+          <td>2</td>
+          <td>Juan</td>
+        </tr>
+        <tr>
+          <td>3</td>
+          <td>Rocky</td>
+          <td>15</td>
+          <td>5</td>
+          <td>Maria</td>
+        </tr>
+        <tr>
+          <td>4</td>
+          <td>Toby</td>
+          <td>7</td>
+          <td>1</td>
+          <td>Maria</td>
+        </tr>
+        <tr>
+          <td>5</td>
+          <td>Luna</td>
+          <td>8</td>
+          <td>4</td>
+          <td>Maria</td>
+        </tr>
+        <tr>
+          <td>6</td>
+          <td>Buddy</td>
+          <td>12</td>
+          <td>6</td>
+          <td>Pedro</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <script>
+      // Crear un objeto que contenga un arreglo de dueños de mascotas y otro arreglo de mascotas
+const veterinaria = {
+  duenos: [
+    { id: 1, nombre: 'Juan', correo: 'juan@gmail.com' },
+    { id: 2, nombre: 'Maria', correo: 'maria@gmail.com' },
+    { id: 3, nombre: 'Pedro', correo: 'pedro@gmail.com' }
+  ],
+  mascotas: [
+    { id: 1, nombre: 'Firulais', peso: 10, edad: 3, id_dueno: 1 },
+    { id: 2, nombre: 'Pelusa', peso: 5, edad: 2, id_dueno: 1 },
+    { id: 3, nombre: 'Rocky', peso: 15, edad: 5, id_dueno: 2 },
+    { id: 4, nombre: 'Toby', peso: 7, edad: 1, id_dueno: 2 },
+    { id: 5, nombre: 'Luna', peso: 8, edad: 4, id_dueno: 2 },
+    { id: 6, nombre: 'Buddy', peso: 12, edad: 6, id_dueno: 3 },
+  ]
+};
+
+// Crear un objeto para almacenar la cantidad de mascotas por dueño
+const mascotasPorDueno = {};
+
+// Iterar por cada mascota y agregarla al objeto de mascotasPorDueno
+for (let mascota of veterinaria.mascotas) {
+  if (mascotasPorDueno[mascota.id_dueno]) {
+    mascotasPorDueno[mascota.id_dueno]++;
+  } else {
+    mascotasPorDueno[mascota.id_dueno] = 1;
+  }
+}
+
+// Encontrar el dueño con más mascotas
+let maxMascotas = 0;
+let idDuenoConMasMascotas;
+for (let dueno of veterinaria.duenos) {
+  if (mascotasPorDueno[dueno.id] && mascotasPorDueno[dueno.id] > maxMascotas) {
+    maxMascotas = mascotasPorDueno[dueno.id];
+    idDuenoConMasMascotas = dueno.id;
+  }
+}
+
+// Imprimir el resultado
+console.log(`El dueño con más mascotas es el de ID ${idDuenoConMasMascotas} con ${maxMascotas} mascotas`);
+
+    </script>
+  </body>
 </html>
